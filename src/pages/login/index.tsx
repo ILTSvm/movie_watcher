@@ -1,5 +1,5 @@
+import axios from 'axios';
 import * as React from 'react';
-
 import './index.scss';
 
 
@@ -8,18 +8,17 @@ class Login extends React.Component{
     super(props);
   }
 
-  //login
+  // login
   public login(){
-    const {acc , pwd} = this.refs
-    
+    axios.post('/api/user/login');
   }
 
   public render() {
     return (
       <div className = "App">
-        <input className = "acc" ref = "acc"/>
-        <input type = "password" className = "pwd" ref = "pwd"/>
-        <button className = "submit" onClick = {this.login}></button>
+        <input className = "acc" />
+        <input type = "password" className = "pwd" />
+        <button className = "submit" onClick = {this.login}>登录</button>
       </div>
     );
   }
