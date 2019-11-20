@@ -12,12 +12,17 @@ class Login extends React.Component{
     axios.post('/api/user/login');
   }
 
+  public register(){
+    axios.post('/api/user/register',{username:'abc',password:'abc'});
+  }
+
   public render() {
     return (
-      <div className = "App">
+      <div>
         <input className = "acc" />
         <input type = "password" className = "pwd" />
         <button className = "submit" onClick = {this.login}>登录</button>
+        <button className = "submit" onClick = {this.register}>注册</button>
       </div>
     );
   }
