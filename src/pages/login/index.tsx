@@ -15,13 +15,15 @@ class Login extends React.Component<ILoginProps, ILoginState> {
 
   // login
   public login() {
-    axios.post('/api/user/login');
+    const { username, password } = this.state;
+    axios.post('/api/user/login', { username, password });
   }
 
   public register() {
-    axios.post('/api/user/register',{username:'abc',password:'abc'});
+    const { username, password } = this.state;
+    axios.post('/api/user/register', { username, password });
   }
-  public handleChange(e: any, key: string) {
+  public handleChange = (e: any, key: string) => {
     console.log(e.currentTarget.value)
     this.setState({
       [key]: e.currentTarget.value,
@@ -32,11 +34,15 @@ class Login extends React.Component<ILoginProps, ILoginState> {
       <div>
         <input 
           className = "acc" 
-          onChange = {(e)=>this.handleChange(e,'username')}
+          onChange = {(e) => { this.handleChange(e,'username') }}
         />
-        <input type = "password" className = "pwd" />
-        <button className = "submit" onClick = {this.login}>登录</button>
-        <button className = "submit" onClick = {this.register}>注册</button>
+        <input 
+          type = "password" 
+          className = "pwd" 
+          onChange = {(e) => { this.handleChange(e,'password') }}
+        />
+        <button className = "submit" onClick = {()=>this.login()}>登录</button>
+        <button className = "submit" onClick = {()=>this.register()}>注册</button>
       </div>
     );
   }
