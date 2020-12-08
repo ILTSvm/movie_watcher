@@ -1,8 +1,10 @@
 import { Button, Input } from 'antd';
 import axios from 'axios';
 import * as React from 'react';
+import { ILoginProps, ILoginState } from './index.d';
+
 import './index.scss';
-class Movie extends React.Component{
+class Movie extends React.Component<ILoginState, ILoginProps>{
   constructor( props : any ){
     super(props);
   }

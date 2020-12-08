@@ -1,3 +1,4 @@
+import { Button, Input } from 'antd';
 import axios from 'axios';
 import * as React from 'react';
 import './index.scss';
@@ -12,7 +13,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
       username: '',
     }
   }
-
+  
   // login
   public login() {
     const { username, password } = this.state;
@@ -23,7 +24,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
     const { username, password } = this.state;
     axios.post('/api/user/register', { username, password });
   }
-  public handleChange = (e: any, key: string) => {
+  public handleChange = (key: string, e: any) => {
     console.log(e.currentTarget.value)
     this.setState({
       [key]: e.currentTarget.value,
@@ -32,17 +33,17 @@ class Login extends React.Component<ILoginProps, ILoginState> {
   public render() {
     return (
       <div>
-        <input 
+        <Input 
           className = "acc" 
-          onChange = {(e) => { this.handleChange(e,'username') }}
+          onChange = {this.handleChange.bind(this,'username')}
         />
-        <input 
+        <Input 
           type = "password" 
           className = "pwd" 
-          onChange = {(e) => { this.handleChange(e,'password') }}
+          onChange = {this.handleChange.bind(this,'password')}
         />
-        <button className = "submit" onClick = {()=>this.login()}>登录</button>
-        <button className = "submit" onClick = {()=>this.register()}>注册</button>
+        <Button className = "submit" onClick = {this.login}>登录</Button>
+        <Button className = "submit" onClick = {this.register}>注册</Button>
       </div>
     );
   }
