@@ -1,10 +1,9 @@
-export interface ILoginState {
+export interface IMovieState {
   name?: string,
-  des?: string,
-  phone?: number,
+  dec?: string,
 }
-export interface ILoginProps {
-  username: string,
-  password: string,
-  phone?: number,
+export interface IMovieProps {
+  name?: string,
+  dec?: string,
+  img?: string,
 }

@@ -1,21 +1,26 @@
 import { Button, Input } from 'antd';
 import axios from 'axios';
 import * as React from 'react';
-import { ILoginProps, ILoginState } from './index.d';
-
+import { MovieInfo } from './components';
+import { IMovieProps, IMovieState } from './index.d';
 import './index.scss';
-class Movie extends React.Component<ILoginState, ILoginProps>{
-  constructor( props : any ){
+class Movie extends React.Component<IMovieState, IMovieProps>{
+  constructor( props : IMovieProps ){
     super(props);
+    this.state = {
+      dec: '',
+      img: '',
+      name: '123',
+    }
   }
 
   // login
-  public login(){
-    axios.post('/api/user/login');
+  public getMovieList(){
+    axios.post('/api/movie/info', { name: '肖申克的救赎' });
   }
 
   public register(){
-    axios.post('/api/user/register',{username:'abc',password:'abc'});
+    axios.post('/api/user/register', {username:'abc',password:'abc'});
   }
 
   public render() {
@@ -25,10 +30,13 @@ class Movie extends React.Component<ILoginState, ILoginProps>{
         <Input type = "name" className = "pwd" />
         <label>细节</label>
         <Input className = "act" />
-        <Button type="primary" onClick = {this.login}>查询</Button>
+        <Button type="primary" onClick = {this.getMovieList}>查询</Button>
         <Button type="ghost" onClick = {this.register}>新增</Button>
         <Button>修改</Button>
         <Button>删除</Button>
+        <MovieInfo 
+          { ...this.state }
+        />
       </div>
     );
   }
